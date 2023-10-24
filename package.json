@@ -1,25 +1,23 @@
 {
-  "name": "@jhnnsrs/rekuest",
-  "version": "0.0.15",
+  "name": "@jhnnsrs/port",
+  "version": "0.0.2",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "rekuest": "graphql-codegen --config rekuest.yml",
-    "fluss": "graphql-codegen --config fluss.yaml",
+    "rekuest": "graphql-codegen --config port.yml",
+    "fluss": "graphql-codegen --config port.yaml",
     "p": "yarn publish --access public"
   },
   "files": [
     "dist"
   ],
-  "module": "./dist/rekuest.mjs",
-  "types": "./dist/index.d.ts",
+  "module": "./dist/port.mjs",
+  "types": "./dist/port.d.ts",
   "dependencies": {
-    "handlebars": "^4.7.8",
-    "subscriptions-transport-ws": "^0.11.0",
-    "yup": "^1.2.0"
+    "subscriptions-transport-ws": "^0.11.0"
   },
   "devDependencies": {
     "@graphql-codegen/add": "^3.2.1",
@@ -29,7 +27,7 @@
     "@graphql-codegen/typescript": "^2.7.1",
     "@graphql-codegen/typescript-operations": "^2.5.1",
     "@graphql-codegen/typescript-react-apollo": "^3.3.1",
-    "@jhnnsrs/fakts": "0.1.16",
+    "@jhnnsrs/fakts": "^0.0.17",
     "@jhnnsrs/herre": "0.0.11",
     "@testing-library/react": "^13.4.0",
     "@types/apollo-upload-client": "^17.0.1",
