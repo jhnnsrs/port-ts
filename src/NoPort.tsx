@@ -1,6 +1,7 @@
-import { useFakts } from "@jhnnsrs/fakts";
+import { useFakts } from "fakts";
+import { Form, Formik } from "formik";
 import React from "react";
-import { useHerre } from "@jhnnsrs/herre";
+import { useHerre } from "herre";
 
 export interface PublicHomeProps {}
 
@@ -8,7 +9,7 @@ export interface ConfigValues {
   host: string;
 }
 
-export const NoHerre: React.FC<PublicHomeProps> = (props) => {
+export const NoPort: React.FC<PublicHomeProps> = (props) => {
   const { login, logout, token } = useHerre();
   const { fakts, setFakts } = useFakts();
 
@@ -42,22 +43,22 @@ export const NoHerre: React.FC<PublicHomeProps> = (props) => {
                 onClick={() =>
                   login(
                     {
-                      clientId: fakts.lok.client_id,
-                      clientSecret: fakts.lok.client_secret,
-                      scopes: fakts.lok.scopes,
+                      clientId: fakts.herre.client_id,
+                      clientSecret: fakts.herre.client_secret,
+                      scopes: fakts.herre.scopes,
                       redirectUri: window.location.origin + "/callback",
                     },
                     {
-                      base_url: fakts.lok.base_url,
-                      tokenUrl: fakts.lok.base_url + "/token/",
-                      userInfoEndpoint: fakts.lok.base_url + "/userinfo/",
-                      authUrl: fakts.lok.base_url + "/authorize/",
+                      base_url: fakts.herre.base_url,
+                      tokenUrl: fakts.herre.base_url + "/token/",
+                      userInfoEndpoint: fakts.herre.base_url + "/userinfo/",
+                      authUrl: fakts.herre.base_url + "/authorize/",
                     }
                   )
                 }
                 className="w-full shadow-lg shadow-primary-300/60 flex items-center justify-center px-8 py-3 border text-base font-medium rounded-md dark:text-white text-back-700 border-primary-400 bg-primary-300 hover:bg-primary-400 md:py-4 md:text-lg md:px-10"
               >
-                Login with {fakts?.lok?.base_url}
+                Login with {fakts.herre.base_url}
               </button>
             )}
           </div>

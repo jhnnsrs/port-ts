@@ -1,37 +1,40 @@
 import { useState } from "react";
 import "./App.css";
-import {
-  FaktsProvider,
-  FaktsGuard,
-  useFakts,
-  WellKnownDiscovery,
-} from "@jhnnsrs/fakts";
+import { FaktsProvider, FaktsGuard, useFakts } from "fakts";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Callback } from "./contrib/Callback";
-import { NoHerre } from "./NoHerre";
-import { HerreGuard, HerreProvider, useHerre } from "@jhnnsrs/herre";
-import { RekuestGuard, RekuestProvider, withRekuest } from "./rekuest";
-import { RekuestAutoConfigure } from "./contrib/RekuestAutoConfigure";
-import { NoRekuest } from "./NoRekuest";
-import { FaktsLogin } from "./contrib/FaktsLogin";
-import { PostmanProvider } from "./rekuest/postman/PostmanProvider";
-import { TestNode } from "./contrib/TestNode";
-import { WidgetRegistry } from "./rekuest/widgets/Registry";
-import { WidgetRegistryProvider } from "./rekuest/widgets/WidgetsProvider";
+import { NoFakts } from "./NoFakts";
+import { HerreGuard, HerreProvider, useHerre } from "herre";
+import { PortGuard, PortProvider, withPort } from "./port";
+import { PortAutoConfigure } from "./contrib/PortAutoConfigure";
+import { NoPort } from "./NoPort";
+import {
+  useMyExperimentsQuery,
+  useMySamplesEventSubscription,
+} from "./api/mikro/graphql";
+
+export const Test = () => {
+  const { data } = withPort(useMyExperimentsQuery)();
+
+  return <>{JSON.stringify(data)}</>;
+};
+
+export const TestSubscription = () => {
+  const { data } = withPort(useMySamplesEventSubscription)();
+
+  return <>{JSON.stringify(data)}</>;
+};
 
 export const ProtectedApp = () => {
   return (
-    <HerreGuard fallback={<NoHerre />}>
-      <RekuestProvider>
-        <WidgetRegistryProvider>
-          <PostmanProvider>
-            <RekuestAutoConfigure />
-            <RekuestGuard fallback={<NoRekuest />}>
-              <TestNode />
-            </RekuestGuard>
-          </PostmanProvider>
-        </WidgetRegistryProvider>
-      </RekuestProvider>
+    <HerreGuard fallback={<NoPort />}>
+      <PortProvider>
+        <PortAutoConfigure />
+        <PortGuard fallback={<NoPort />}>
+          <Test />
+          <TestSubscription />
+        </PortGuard>
+      </PortProvider>
     </HerreGuard>
   );
 };
@@ -39,12 +42,16 @@ export const ProtectedApp = () => {
 function App() {
   const [count, setCount] = useState(0);
 
+  const doRedirect = (url: string) => {
+    console.log("Redirecting to", url);
+    window.location.replace(url);
+  };
+
   return (
     <div className="App">
       <FaktsProvider>
-        <WellKnownDiscovery endpoints={["http://100.91.169.37:8000"]} />
-        <FaktsGuard fallback={<FaktsLogin />}>
-          <HerreProvider>
+        <FaktsGuard fallback={<NoFakts />}>
+          <HerreProvider doRedirect={doRedirect}>
             <Router>
               <Routes>
                 <Route path="/" element={<ProtectedApp />} />

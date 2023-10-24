@@ -917,10 +917,10 @@
   resolved "https://registry.yarnpkg.com/@iarna/toml/-/toml-2.2.5.tgz#b32366c89b43c6f8cefbdefac778b9c828e3ba8c"
   integrity sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==
 
-"@jhnnsrs/fakts@0.1.16":
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/@jhnnsrs/fakts/-/fakts-0.1.16.tgz#b259fd1da60de5466c6ff6bbd267d5c1ced38843"
-  integrity sha512-agg5sK7lp7qbGZS3kRv57VfmNVs13o6XJqSAN2eRfDb8j38KGOsTc+r+XuHaGeSjzaioY73MyDdjHSB+iicNaw==
+"@jhnnsrs/fakts@^0.0.17":
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/@jhnnsrs/fakts/-/fakts-0.0.17.tgz#c41a9e404a1bcab40e9e72132bc06807954f2750"
+  integrity sha512-kAXiMz24Y1ztwV6ixdXtUxdiIs1xfTTLQ9iVtQXSqDtV0hb/tYMYfanzdHb/dKGysA/eUzHRMYtll5o+q6iQKQ==
   dependencies:
     cancelable-promise "^4.3.0"
 

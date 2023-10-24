@@ -5,11 +5,11 @@ import {
   createHttpLink,
   split,
 } from "@apollo/client";
-import { WebSocketLink } from "@apollo/client/link/ws";
-import { getMainDefinition } from "@apollo/client/utilities";
-import { RekuestConfig } from "./types";
+import { WebSocketLink } from "@apollo/client/link/ws/index.js";
+import { getMainDefinition } from "@apollo/client/utilities/index.js";
+import { PortConfig } from "./types";
 
-export const createRekuestClient = (config: RekuestConfig) => {
+export const createPortClient = (config: PortConfig) => {
   let token = config.retrieveToken();
 
   const httpLink = createHttpLink({

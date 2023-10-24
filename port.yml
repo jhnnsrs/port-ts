@@ -1,11 +1,11 @@
 overwrite: true
 schema: "http://localhost:8090/graphql"
-documents: "graphql/rekuest/**/*.graphql"
+documents: "graphql/port/**/*.graphql"
 generates:
-  src/rekuest/api/fragments.ts:
+  src/port/api/fragments.ts:
     plugins:
       - "fragment-matcher"
-  src/rekuest/api/graphql.ts:
+  src/port/api/graphql.ts:
     plugins:
       - "typescript"
       - "typescript-operations"
@@ -15,6 +15,6 @@ generates:
       reactApolloVersion: 3
       arrayInputCoercion: false
 
-  src/rekuest/api/graphql.schema.json:
+  src/port/api/graphql.schema.json:
     plugins:
       - "introspection"

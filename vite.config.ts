@@ -7,13 +7,13 @@ export default defineConfig({
   plugins: [dts({ rollupTypes: true }), react()],
 
   server: {
-    port: 6789,
+    host: "127.0.0.1",
     strictPort: true,
   },
   build: {
     lib: {
-      entry: "src/rekuest/index.tsx",
-      name: "rekuest",
+      entry: "src/port/index.tsx",
+      name: "port",
       formats: ["es"],
     },
     rollupOptions: {
@@ -21,14 +21,16 @@ export default defineConfig({
         "react",
         "react-dom",
         "@apollo/client",
+        "@apollo/client/link/ws",
+        "@apollo/client/utilities",
         "subscriptions-transport-ws ",
-        "yup",
-        "handlebars",
       ],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
+          "@apollo/client/link/ws": "WebSocketLinkGlobalVar",
+          "@apollo/client/utilities": "ApolloClientUtilities",
         },
       },
     },

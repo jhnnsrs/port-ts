@@ -1,25 +1,25 @@
 import React from "react";
-import { useRekuest } from "./RekuestContext";
+import { usePort } from "./PortContext";
 
-export const RekuestGuard: React.FC<{
+export const PortGuard: React.FC<{
   key?: string;
   fallback?: React.ReactNode;
   children: React.ReactNode;
 }> = ({ key, children, fallback }) => {
-  const { client } = useRekuest();
+  const { client } = usePort();
 
   if (client) return <>{children}</>;
 
-  return <>{fallback || `Not yet with Rekuest`}</>;
+  return <>{fallback || `Not yet with Port`}</>;
 };
 
-export const rekuestGuarded = <T extends {}>(
+export const portGuarded = <T extends {}>(
   Child: React.ComponentType<T>,
   fallback?: React.ReactNode
 ) => {
   return (props: any) => (
-    <RekuestGuard fallback={fallback}>
+    <PortGuard fallback={fallback}>
       <Child {...props} />
-    </RekuestGuard>
+    </PortGuard>
   );
 };
